@@ -5,13 +5,20 @@ import './App.css';
 import LandingPage from './pages/LandingPage';
 import Chat from './pages/Chat';
 import NotFound from './pages/NotFound';
+import AlertBanner from './components/AlertBanner';
+import { useSelector } from 'react-redux';
+import { RootState } from './state/store';
 
-function App() {
+const App = () => {
+  const state = useSelector((state: RootState) => state);
 
   useEffect(() => {}, []);
-
+  const log = () => {
+    console.log(state);
+  };
   return (
     <div className="App">
+      <AlertBanner />
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
@@ -25,8 +32,9 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
+      <button onClick={log}>log state</button>
     </div>
   );
-}
+};
 
 export default App;

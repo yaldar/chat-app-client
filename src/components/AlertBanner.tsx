@@ -1,13 +1,22 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearError } from '../state/actions';
+import { RootState } from '../state/store';
 
-type Props = { alert: String; setAlert: Dispatch<SetStateAction<string>> };
+const AlertBanner: React.FC = () => {
+  const error = useSelector((state: RootState) => state?.errorReducer);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log('i run');
 
-const AlertBanner: React.FC<Props> = ({ alert, setAlert }) => {
+    setTimeout(() => dispatch(clearError()), 3000);
+  }, [error]);
   return (
-    <div>
-      <button onClick={() => setAlert('')}>x</button>
-      <h1>{alert}</h1>
-    </div>
+    error && (
+      <div>
+        <button onClick={() => dispatch(clearError())}>canellllll</button>
+      </div>
+    )
   );
 };
 

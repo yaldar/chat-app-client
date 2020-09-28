@@ -1,20 +1,28 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearError } from '../state/actions';
 import { RootState } from '../state/store';
 
 const AlertBanner: React.FC = () => {
-  const error = useSelector((state: RootState) => state?.errorReducer);
+  const error:Error = useSelector((state: RootState) => state?.errorReducer);
   const dispatch = useDispatch();
-  useEffect(() => {
-    console.log('i run');
 
+  const closeError = () => {
+    dispatch(clearError());
+  };
+
+  useEffect(() => {
     setTimeout(() => dispatch(clearError()), 3000);
   }, [error]);
   return (
     error && (
-      <div>
-        <button onClick={() => dispatch(clearError())}>canellllll</button>
+      <div className="alert-banner">
+        <div className="alert">
+          <span className="closebtn" onClick={closeError}>
+            &times;
+          </span>
+          {error.message}
+        </div>
       </div>
     )
   );

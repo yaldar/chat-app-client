@@ -1,12 +1,13 @@
 import React from 'react';
 
-const OnlineUsers = ({ users }: { users: String[] }) => {
+const OnlineUsers = ({ users }: { users: string[] }) => {
   return (
-    <ul>
-      {users.map((u) => (
-        <li>{u}</li>
+    <div className="users">
+      <h4>Online users:</h4>
+      {users.map((u, index) => (
+        <p key={index}> 🟢 {u}</p>
       ))}
-    </ul>
+    </div>
   );
 };
 

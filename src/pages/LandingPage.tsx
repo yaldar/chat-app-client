@@ -1,16 +1,21 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
-import util from '../util';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import io from 'socket.io-client';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useHistory } from 'react-router-dom';
 
 import { setSocket, setError, setNickname } from '../state/actions';
+import { RootState } from '../state/store';
+import util from '../util';
 
 const LandingPage: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const socket: SocketIOClient.Socket = useSelector(
+    (state: RootState) => state?.socketReducer,
+  );
 
+  useEffect(() => {}, []);
   const [nicknameInput, setNicknameInput] = useState('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -20,34 +25,47 @@ const LandingPage: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { alreadyExists, error } = await util.addUser(nicknameInput);
-
     if (error) {
-      console.log('huh');
+      dispatch(
+        setError(
+          `Problem contacting server, please try again later. Error message: ${error.message}`,
+        ),
+      );
     } else if (alreadyExists) {
-      dispatch(setError('nickname taken'));
+      dispatch(setError('Nickname alrready taken!'));
+    } else if (!nicknameInput) {
+      dispatch(setError('Nickname cannot be empty!'));
     } else {
-
-      const newSocket = io('http://localhost:8080');
-      console.log(io('http://localhost:8080'));
-      console.log(newSocket.connected);
-      if (newSocket.connected) {
+      try {
+        const newSocket = io('http://localhost:8080');
+        newSocket.emit('user_join', nicknameInput);
         dispatch(setSocket(newSocket));
         dispatch(setNickname(nicknameInput));
         history.push('/chat');
-      } else {
-        console.log('what in the fuck');
+      } catch (e) {
+        dispatch(
+          setError(
+            `Problem establishing a connection. Error message: ${e?.message}`,
+          ),
+        );
       }
     }
   };
 
   return (
-    <div className="chat">
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={nicknameInput} onChange={handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
+    <div className="loginWrapper">
+      <h2>Welcomt to Ubuiquiti chat!</h2>
+      <form onSubmit={handleSubmit} className="login-form">
+        <input
+          autoFocus
+          className="nicknameField"
+          type="text"
+          value={nicknameInput}
+          placeholder="Enter your nickname"
+          onChange={handleChange}
+        />
+
+        <button type="submit">Join chat</button>
       </form>
     </div>
   );

@@ -1,31 +1,21 @@
+import { Dispatch } from 'redux';
+import { clearChat, clearNickname, clearUsers } from '../state/actions';
+
 const addUser = async (nickname: string) => {
-  const body = JSON.stringify({ nickname });
   const obj: {
     error: Error | undefined;
     alreadyExists: boolean | undefined;
-    nickname: String | undefined;
   } = {
     error: undefined,
     alreadyExists: undefined,
-    nickname: undefined,
-  };
-  const options = {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body,
   };
 
   try {
-    const data = await fetch(`http://localhost:8080/api/users/`, options);
-    if (data.status === 201) {
-      obj.nickname = await data.json();
+    const data = await fetch(`http://localhost:8080/api/users/${nickname}`);
+    if (data.status === 200) {
       obj.error = undefined;
       obj.alreadyExists = false;
     } else if (data.status === 409) {
-      // obj.error = new Error('username taken');
       obj.alreadyExists = true;
     }
   } catch (e) {
@@ -35,4 +25,14 @@ const addUser = async (nickname: string) => {
   return obj;
 };
 
-export default { addUser };
+const clearLocalData = (socket: SocketIOClient.Socket, dispatch: Dispatch) => {
+  dispatch(clearChat());
+  dispatch(clearNickname());
+  dispatch(clearUsers());
+
+  if (socket) {
+    socket.disconnect();
+  }
+};
+
+export default { addUser, clearLocalData };

@@ -1,5 +1,3 @@
-import { type } from 'os';
-
 type SocketAction = {
   type: 'NEW_SOCKET' | 'DISCONNECT';
   payload: SocketIOClient.Socket;
@@ -20,7 +18,7 @@ const socketReducer = (
 
 type UsersAction = {
   type: 'GET_USERS' | 'CLEAR_USERS';
-  payload: String[];
+  payload: string[];
 };
 const usersReducer = (state = [], { type, payload }: UsersAction) => {
   switch (type) {
@@ -34,12 +32,12 @@ const usersReducer = (state = [], { type, payload }: UsersAction) => {
 };
 
 type NicknameAction = {
-  type: 'NEW_USER' | 'CLEAR_NICKNAME';
-  payload: String;
+  type: 'SET_NICKNAME' | 'CLEAR_NICKNAME';
+  payload: string;
 };
 const nicknameReducer = (state = '', { type, payload }: NicknameAction) => {
   switch (type) {
-    case 'NEW_USER':
+    case 'SET_NICKNAME':
       return payload;
     case 'CLEAR_NICKNAME':
       return '';
@@ -48,14 +46,15 @@ const nicknameReducer = (state = '', { type, payload }: NicknameAction) => {
   }
 };
 
-type ChatAction = {
-  type: 'NEW_MESSAGE' | 'CLEAR_CHAT';
+type EventAction = {
+  type: 'NEW_MESSAGE' | 'USER_JOIN' | 'USER_LEAVE' | 'CLEAR_CHAT' | 'TIMEOUT';
   payload: {
-    from: String;
-    message: String;
+    from: string;
+    message?: string;
+    eventType: 'NEW_MESSAGE' | 'USER_LEAVE';
   };
 };
-const chatReducer = (state = [], { type, payload }: ChatAction) => {
+const chatReducer = (state = [], { type, payload }: EventAction) => {
   switch (type) {
     case 'NEW_MESSAGE':
       return [
@@ -64,10 +63,40 @@ const chatReducer = (state = [], { type, payload }: ChatAction) => {
           from: payload.from,
           message: payload.message,
           timeStamp: Date.now(),
+          eventType: 'new_message',
         },
       ];
+    case 'USER_JOIN':
+      return [
+        ...state,
+        {
+          from: payload.from,
+          timeStamp: Date.now(),
+          eventType: 'user_join',
+        },
+      ];
+    case 'USER_LEAVE':
+      return [
+        ...state,
+        {
+          from: payload.from,
+          timeStamp: Date.now(),
+          eventType: 'user_leave',
+        },
+      ];
+    case 'TIMEOUT':
+      return [
+        ...state,
+        {
+          from: payload.from,
+          timeStamp: Date.now(),
+          eventType: 'timeout',
+        },
+      ];
+
     case 'CLEAR_CHAT':
       return [];
+
     default:
       return state;
   }
@@ -76,7 +105,7 @@ const chatReducer = (state = [], { type, payload }: ChatAction) => {
 type ErrorAction = {
   type: 'SET_ERROR' | 'CLEAR_ERROR';
   payload: {
-    message: String;
+    message: string;
     code?: number;
   };
 };

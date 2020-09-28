@@ -1,14 +1,101 @@
+:root {
+  --border: 2px rgb(5, 107, 112) solid;
+  --background: linear-gradient(90deg, rgb(5, 33, 37) 0%, rgb(1, 35, 73) 100%);
+}
+
 .App {
   display: flex;
   justify-content: center;
-  margin-top: 20vw;
+  padding-top: 10vh;
+  background: var(--background);
+  height: 100vh;
+  color: white;
 }
 
-html {
-  background: rgb(21, 48, 80);
-  background: linear-gradient(
-    90deg,
-    rgba(27, 30, 52, 1) 0%,
-    rgba(0, 127, 191, 1) 100%
-  );
+.messages {
+  border: var(--border);
+  border-radius: 5px;
+  padding: 10px;
+  height: 50vh;
+  width: 50vw;
+  margin-bottom: 20px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.message{
+  margin-block-end: 5px;
+  margin-block-start: 5px;
+}
+.me {
+  margin-right: 10px;
+  text-align: end;
+  border-radius: 20px;
+  box-sizing: border-box;
+
+}
+
+
+.other {
+  text-align: start;
+}
+
+.loginWrapper {
+  border: var(--border);
+  border-radius: 5px;
+  height: 10vw;
+  padding: 30px;
+}
+.nicknameField {
+  width: 200px;
+  margin: 20px;
+}
+
+.chat {
+  display: flex;
+  padding: 10px;
+}
+.chatWrapper {
+  padding-left: 20px;
+}
+.chatInput {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.textField {
+  width: 30vw;
+}
+
+.alert {
+  padding: 20px;
+  background-color: #74221cd8;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.login-button {
+  width: 100px;
+}
+.alert-banner {
+  position: absolute;
+  margin-top: -8vh;
+  width: 500px;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
 }

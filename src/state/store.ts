@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -23,7 +23,5 @@ const store = createStore(
   RootReducer,
   composeWithDevTools(applyMiddleware(thunkMiddleware)),
 );
-
-store.subscribe(() => console.log(store.getState()));
 
 export default store;

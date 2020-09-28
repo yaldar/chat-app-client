@@ -54,7 +54,7 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="loginWrapper">
-      <h2>Welcomt to Ubuiquiti chat!</h2>
+      <h2>Welcome to Ubuiquiti chat!</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <input
           autoFocus

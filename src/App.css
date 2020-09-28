@@ -6,10 +6,27 @@
 .App {
   display: flex;
   justify-content: center;
-  padding-top: 10vh;
+  padding-top: 8vh;
   background: var(--background);
   height: 100vh;
   color: white;
+}
+
+.loginWrapper, .chat {
+  position: relative;
+  animation: mymove 1s ease-in forwards;
+  animation-iteration-count: 1;
+}
+
+@keyframes mymove {
+  from {
+    top: 0px;
+    opacity: 0;
+  }
+  to {
+    top: 8vh;
+    opacity: 1;
+  }
 }
 
 .messages {
@@ -24,7 +41,7 @@
   flex-direction: column;
 }
 
-.message{
+.message {
   margin-block-end: 5px;
   margin-block-start: 5px;
 }
@@ -33,9 +50,7 @@
   text-align: end;
   border-radius: 20px;
   box-sizing: border-box;
-
 }
-
 
 .other {
   text-align: start;

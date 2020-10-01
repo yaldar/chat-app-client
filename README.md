@@ -6,4 +6,4 @@
 Run the following script:
 `npm i && npm start`
 
-The client-side of tthe application will start on `http://localhost:3000`
+The client-side of the application will start on `http://localhost:3000`

@@ -1,8 +1,7 @@
-import React, {
-  ChangeEvent, FormEvent, useEffect, useState,
-} from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button, Checkbox, Container, Form, Input, Segment } from 'semantic-ui-react'
 
 import { useHistory } from 'react-router-dom';
 
@@ -26,6 +25,10 @@ const LandingPage: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if(util.invalidNickname(nicknameInput)){
+      dispatch(setError('invalid character in nickname. only letters and numbers allowed!'))
+      return;
+    }
     const { alreadyExists, error } = await util.addUser(nicknameInput);
     if (error) {
       dispatch(
@@ -55,20 +58,21 @@ const LandingPage: React.FC = () => {
   };
 
   return (
-    <div className="loginWrapper">
+    <Segment id="login-wrapper" raised>
       <h2>Welcome to Ubuiquiti chat!</h2>
-      <form onSubmit={handleSubmit} className="login-form">
-        <input
-          className="nicknameField"
+      <Form onSubmit={handleSubmit} id="login-form">
+        <Input
+        autoFocus
+          id="nickname-field"
           type="text"
           value={nicknameInput}
           placeholder="Enter your nickname"
           onChange={handleChange}
         />
 
-        <button type="submit">Join chat</button>
-      </form>
-    </div>
+        <Button type="submit" id="login-button">Join chat</Button>
+      </Form>
+    </Segment>
   );
 };
 

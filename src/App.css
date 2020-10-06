@@ -1,116 +1,41 @@
-:root {
-  --border: 2px rgb(5, 107, 112) solid;
-  --background: linear-gradient(90deg, rgb(5, 33, 37) 0%, rgb(1, 35, 73) 100%);
+
+body{
+  background-image: url("https://i.imgur.com/xciD3Gm.jpg");
+
+  background-size: cover;
 }
 
-.App {
-  display: flex;
-  justify-content: center;
-  padding-top: 8vh;
-  background: var(--background);
-  height: 100vh;
-  color: white;
-}
+.alert-box {
 
-.loginWrapper, .chat {
-  position: relative;
-  animation: mymove 1s ease-in forwards;
-  animation-iteration-count: 1;
 }
-
-@keyframes mymove {
-  from {
-    top: 0px;
-    opacity: 0;
-  }
-  to {
-    top: 8vh;
-    opacity: 1;
-  }
-}
-
-.messages {
-  border: var(--border);
-  border-radius: 5px;
+#login-wrapper {
+  margin: auto;
+  width: 50%;
   padding: 10px;
-  height: 50vh;
-  width: 50vw;
-  margin-bottom: 20px;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
+  max-width: 80vw;
+  margin-top: 10vh;
+  text-align: center;
+  background-color: rgb(118, 127, 128);
+  transition:box-shadow .3s;
+}
+#login-wrapper:hover {
+  box-shadow: 0 5px 10px 0 rgba(22, 32, 37, 0.815);
+
+}
+#login-form {
+
+
 }
 
-.message {
-  margin-block-end: 5px;
-  margin-block-start: 5px;
-}
-.me {
-  margin-right: 10px;
-  text-align: end;
-  border-radius: 20px;
-  box-sizing: border-box;
-}
 
-.other {
-  text-align: start;
-}
+#login-button {
+  width: fit-content;
 
-.loginWrapper {
-  border: var(--border);
-  border-radius: 5px;
-  height: 15vh;
-  padding: 30px;
-}
-.nicknameField {
-  width: 200px;
-  margin: 20px;
-}
+  transition: all .3s ease-in-out;
+  color: rgb(56, 56, 56);
 
-.chat {
-  display: flex;
-  padding: 10px;
 }
-.chatWrapper {
-  padding-left: 20px;
-}
-.chatInput {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.textField {
-  width: 30vw;
-}
-
-.alert {
-  padding: 20px;
-  background-color: #74221cd8;
-  color: white;
-  margin-bottom: 15px;
-}
-
-.login-button {
-  width: 100px;
-}
-.alert-banner {
-  position: absolute;
-  margin-top: -8vh;
-  width: 500px;
-}
-
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.closebtn:hover {
-  color: black;
+#login-button:hover{
+  background-color: rgba(108, 171, 223, 0.507);
+  color: rgb(0, 0, 0);
 }

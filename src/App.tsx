@@ -1,4 +1,5 @@
 import React from 'react';
+import 'semantic-ui-css/semantic.min.css'
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -8,6 +9,7 @@ import LandingPage from './pages/LandingPage';
 import ChatPage from './pages/ChatPage';
 import NotFound from './pages/NotFound';
 import AlertBanner from './components/AlertBanner';
+import Test from './pages/Test';
 
 const App = () => (
   <div className="App">
@@ -20,6 +22,10 @@ const App = () => (
         <Route exact path="/chat">
           <ChatPage />
         </Route>
+        <Route path="/test">
+          <Test />
+        </Route>
+
         <Route path="*">
           <NotFound />
         </Route>

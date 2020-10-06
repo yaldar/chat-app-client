@@ -4,7 +4,8 @@ import React, {
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import Messages from '../components/Messages';
+import { Form, Input, Segment } from 'semantic-ui-react';
+import ChatBox from '../components/ChatBox';
 import OnlineUsers from '../components/OnlineUsers';
 import {
   fetchUsers,
@@ -86,12 +87,12 @@ const ChatPage: React.FC = () => {
   };
 
   return (
-    <div className="chat">
+    <Segment className="chat">
       <OnlineUsers users={users} />
       <div className="chatWrapper">
-        <Messages />
-        <form onSubmit={handleSubmit} className="chatInput">
-          <input
+        <ChatBox />
+        <Form onSubmit={handleSubmit} className="chatInput">
+          <Input
             autoFocus
             type="text"
             value={messageInput}
@@ -99,9 +100,9 @@ const ChatPage: React.FC = () => {
             className="textField"
           />
           <input type="submit" value="Send" />
-        </form>
+        </Form>
       </div>
-    </div>
+    </Segment>
   );
 };
 

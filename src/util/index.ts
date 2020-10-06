@@ -35,4 +35,8 @@ const clearLocalData = (socket: SocketIOClient.Socket, dispatch: Dispatch) => {
   }
 };
 
-export default { addUser, clearLocalData };
+const invalidNickname = (nickname: string) => {
+  const valid = /^[0-9a-zA-Z]+$/.test(nickname);
+  return !valid;}
+
+export default { addUser, clearLocalData, invalidNickname };

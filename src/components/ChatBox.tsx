@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../state/store';
+import SingleMessage from './SingleMessage';
 
-const Messages = () => {
+
+const ChatBox = () => {
   const chat: any[] = useSelector((state: RootState) => state.chatReducer);
   const nickname: string = useSelector(
     (state: RootState) => state?.nicknameReducer,
@@ -59,9 +61,8 @@ const Messages = () => {
           );
         }
         return (
-          <p className={`message ${sender}`} key={index}>
-            {sender === 'me' ? el.message : `${el.from}: ${el.message}`}
-          </p>
+
+            <SingleMessage sender={sender} message={el.message}/>
         );
       })}
       <div id="bottom" />
@@ -69,4 +70,4 @@ const Messages = () => {
   );
 };
 
-export default Messages;
+export default ChatBox;

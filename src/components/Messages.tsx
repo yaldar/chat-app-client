@@ -24,42 +24,47 @@ const Messages = () => {
         if (el.eventType === 'user_leave') {
           return (
             <p
-              //@ts-ignore
-              className={`leave`}
+              // @ts-ignore
+              className="leave"
               key={index}
             >
-              {el.from} has left the chat
+              {el.from}
+              {' '}
+              has left the chat
             </p>
           );
-        } else if (el.eventType === 'user_join') {
+        } if (el.eventType === 'user_join') {
           return (
             <p
-              //@ts-ignore
-              className={`join`}
+              // @ts-ignore
+              className="join"
               key={index}
             >
-              {el.from} has joined the chat
+              {el.from}
+              {' '}
+              has joined the chat
             </p>
           );
-        } else if (el.eventType === 'timeout') {
+        } if (el.eventType === 'timeout') {
           return (
             <p
-              //@ts-ignore
-              className={`join`}
+              // @ts-ignore
+              className="join"
               key={index}
             >
-              {el.from} was due to inactivity
-            </p>
-          );
-        } else {
-          return (
-            <p className={`message ${sender}`} key={index}>
-              {sender === 'me' ? el.message : el.from + ': ' + el.message}
+              {el.from}
+              {' '}
+              was due to inactivity
             </p>
           );
         }
+        return (
+          <p className={`message ${sender}`} key={index}>
+            {sender === 'me' ? el.message : `${el.from}: ${el.message}`}
+          </p>
+        );
       })}
-      <div id="bottom"></div>
+      <div id="bottom" />
     </div>
   );
 };

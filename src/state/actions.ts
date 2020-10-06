@@ -1,4 +1,3 @@
-
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from './store';
@@ -88,6 +87,6 @@ export const clearChat = () => ({
 export const userTimeout = (nickname: string) => ({
   type: 'TIME_OUT',
   payload: {
-    from:nickname
-  }
-})
+    from: nickname,
+  },
+});

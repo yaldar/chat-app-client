@@ -1,5 +1,7 @@
 /* eslint-disable import/extensions */
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent, FormEvent, useEffect, useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Messages from '../components/Messages';
@@ -10,7 +12,7 @@ import {
   newMessage,
   setError,
   userLeave,
- userTimeout
+  userTimeout,
 } from '../state/actions';
 import { RootState } from '../state/store';
 import util from '../util';
@@ -26,7 +28,7 @@ const ChatPage: React.FC = () => {
     (state: RootState) => state.socketReducer,
   );
 
-  useEffect(() => {
+  const initializeSocketListeners = (socket: SocketIOClient.Socket) => {
     if (socket) {
       dispatch(fetchUsers());
       socket.on('new_message', (data: any) => {
@@ -47,8 +49,8 @@ const ChatPage: React.FC = () => {
         history.push('/');
       });
       socket.on('timeout', (nickname: string) => {
-        dispatch(userTimeout(nickname))
-      })
+        dispatch(userTimeout(nickname));
+      });
       socket.on('user_leave', (nickname: string) => {
         dispatch(userLeave(nickname));
         dispatch(fetchUsers());
@@ -59,6 +61,10 @@ const ChatPage: React.FC = () => {
     } else {
       history.push('/');
     }
+  };
+
+  useEffect(() => {
+    initializeSocketListeners(socket);
     return () => {
       if (socket) {
         socket.disconnect();

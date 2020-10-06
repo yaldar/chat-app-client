@@ -59,7 +59,7 @@
 .loginWrapper {
   border: var(--border);
   border-radius: 5px;
-  height: 10vw;
+  height: 15vh;
   padding: 30px;
 }
 .nicknameField {

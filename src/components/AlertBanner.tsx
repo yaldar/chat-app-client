@@ -19,7 +19,6 @@ const AlertBanner: React.FC = () => {
       <div className="alert-banner">
         <div className="alert">
           <span className="closebtn" onClick={closeError}>
-            &times;
           </span>
           {error.message}
         </div>

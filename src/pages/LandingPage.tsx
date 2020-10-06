@@ -1,4 +1,6 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent, FormEvent, useEffect, useState,
+} from 'react';
 import io from 'socket.io-client';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -42,10 +44,10 @@ const LandingPage: React.FC = () => {
         dispatch(setSocket(newSocket));
         dispatch(setNickname(nicknameInput));
         history.push('/chat');
-      } catch (e) {
+      } catch (err) {
         dispatch(
           setError(
-            `Problem establishing a connection. Error message: ${e?.message}`,
+            `Problem establishing a connection. Error message: ${err?.message}`,
           ),
         );
       }
@@ -57,7 +59,6 @@ const LandingPage: React.FC = () => {
       <h2>Welcome to Ubuiquiti chat!</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <input
-          autoFocus
           className="nicknameField"
           type="text"
           value={nicknameInput}

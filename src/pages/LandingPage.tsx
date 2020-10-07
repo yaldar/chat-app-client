@@ -1,40 +1,28 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import io from 'socket.io-client';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button, Form, Input } from 'antd';
+import React, { FormEvent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
-import { setSocket, setError, setNickname } from '../state/actions';
-import { RootState } from '../state/store';
+import io from 'socket.io-client';
+import { Button, Input } from 'antd';
+import { setSocket, setError, setNickname } from '../store/actions';
 import util from '../util';
 
-const LandingPage: React.FC = () => {
+const LandingPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const socket: SocketIOClient.Socket = useSelector(
-    (state: RootState) => state?.socketReducer,
-  );
 
   useEffect(() => {}, []);
   const [nicknameInput, setNicknameInput] = useState('');
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setNicknameInput(e.target.value);
-  };
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if(util.invalidNickname(nicknameInput)){
-      dispatch(setError('invalid character in nickname. only letters and numbers allowed!'))
-      return;
-    }
+
     const { alreadyExists, error } = await util.addUser(nicknameInput);
     if (error) {
       dispatch(
-        setError(
-          `Problem contacting server, please try again later. Error message: ${error.message}`,
-        ),
+        setError(`Problem contacting server. Error message: ${error.message}`),
       );
+    } else if (util.invalidNickname(nicknameInput)) {
+      dispatch(setError('invalid nickname. only letters and numbers allowed!'));
     } else if (alreadyExists) {
       dispatch(setError('Nickname alrready taken!'));
     } else if (!nicknameInput) {
@@ -49,7 +37,7 @@ const LandingPage: React.FC = () => {
       } catch (err) {
         dispatch(
           setError(
-            `Problem establishing a connection. Error message: ${err?.message}`,
+            `Problem establishing a connection. Error message: ${err.message}`,
           ),
         );
       }
@@ -57,19 +45,19 @@ const LandingPage: React.FC = () => {
   };
 
   return (
-    <div id="login-wrapper" >
-      <h2 id="welcome">Welcome to Ubuiquiti chat!</h2>
-      <form onSubmit={handleSubmit} id="login-form">
+    <div className="login-wrapper">
+      <h2 className="welcome">Welcome to Ubiquiti chat!</h2>
+      <form onSubmit={handleSubmit} className="login-form">
         <Input
-        autoFocus
-          id="nickname-field"
+          className="nickname-field"
           type="text"
           value={nicknameInput}
           placeholder="Enter your nickname"
-          onChange={handleChange}
+          onChange={(e) => setNicknameInput(e.target.value)}
         />
-
-        <Button type="ghost" htmlType="submit" id="login-button">Join chat</Button>
+        <Button type="ghost" htmlType="submit" className="login-button">
+          Join chat
+        </Button>
       </form>
     </div>
   );

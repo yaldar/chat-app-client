@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { applyMiddleware, CombinedState, combineReducers, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -17,7 +17,13 @@ const RootReducer = combineReducers({
   usersReducer,
   chatReducer,
 });
-export type RootState = ReturnType<typeof RootReducer>;
+export type RootState = CombinedState<{
+  errorReducer: never;
+  nicknameReducer: string;
+  socketReducer: never;
+  usersReducer: never;
+  chatReducer: never;
+}>;
 
 const store = createStore(
   RootReducer,

@@ -1,5 +1,16 @@
-import { Dispatch } from 'redux';
-import { clearChat, clearNickname, clearUsers } from '../state/actions';
+import {
+  clearChat,
+  clearNickname,
+  clearUsers,
+  fetchUsers,
+  newMessage,
+  setError,
+  userJoin,
+  userLeave,
+  userTimeout,
+} from '../store/actions';
+import { useDispatch } from 'react-redux';
+import { Dispatch } from 'react';
 
 const addUser = async (nickname: string) => {
   const obj: {
@@ -25,7 +36,7 @@ const addUser = async (nickname: string) => {
   return obj;
 };
 
-const clearLocalData = (socket: SocketIOClient.Socket, dispatch: Dispatch) => {
+const clearLocalData = (socket: SocketIOClient.Socket, dispatch: Dispatch<any>) => {
   dispatch(clearChat());
   dispatch(clearNickname());
   dispatch(clearUsers());
@@ -35,8 +46,51 @@ const clearLocalData = (socket: SocketIOClient.Socket, dispatch: Dispatch) => {
   }
 };
 
-const invalidNickname = (nickname: string) => {
-  const valid = /^[0-9a-zA-Z]+$/.test(nickname);
-  return !valid;}
+const initializeSocketListeners = (socket: SocketIOClient.Socket, dispatch: Dispatch<any>, history: any) => {
 
-export default { addUser, clearLocalData, invalidNickname };
+
+  if (socket) {
+    dispatch(fetchUsers());
+    socket.on('new_message', (data: any) => {
+      dispatch(newMessage(data.nickname, data.message));
+    });
+    socket.on('user_join', (nickname: string) => {
+      dispatch(userJoin(nickname));
+      dispatch(fetchUsers());
+    });
+    socket.on('server_shutdown', () => {
+      dispatch(setError('Server shutting down!'));
+      clearLocalData(socket, dispatch);
+      history.push('/');
+    });
+    socket.on('inactivity_disconnect', () => {
+      dispatch(setError('you have been disconnected due to inactivity'));
+      clearLocalData(socket, dispatch);
+      history.push('/');
+    });
+    socket.on('timeout', (nickname: string) => {
+      dispatch(userTimeout(nickname));
+    });
+    socket.on('user_leave', (nickname: string) => {
+      dispatch(userLeave(nickname));
+      dispatch(fetchUsers());
+    });
+    socket.on('disconnect', () => {
+      history.push('/');
+    });
+  } else {
+    history.push('/');
+  }
+};
+
+const invalidNickname = (nickname: string) => {
+  const valid = /^[0-9a-zA-Z ]*$/.test(nickname);
+  return !valid;
+};
+
+export default {
+  addUser,
+  clearLocalData,
+  invalidNickname,
+  initializeSocketListeners,
+};

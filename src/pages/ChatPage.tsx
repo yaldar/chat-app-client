@@ -1,71 +1,21 @@
-/* eslint-disable import/extensions */
-import React, {
-  ChangeEvent, FormEvent, useEffect, useState,
-} from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { Form, Input, Segment } from 'semantic-ui-react';
-import ChatBox from '../components/ChatBox';
+import { RootState } from '../store/store';
+import Messages from '../components/Messages';
 import OnlineUsers from '../components/OnlineUsers';
-import {
-  fetchUsers,
-  userJoin,
-  newMessage,
-  setError,
-  userLeave,
-  userTimeout,
-} from '../state/actions';
-import { RootState } from '../state/store';
 import util from '../util';
+import ChatInput from '../components/ChatInput';
+import { useHistory } from 'react-router-dom';
 
-// Input placeholder="Basic usage" />
-const ChatPage: React.FC = () => {
+const ChatPage = () => {
   const dispatch = useDispatch();
-  const [messageInput, setMessageInput] = useState('');
   const history = useHistory();
-
-  const users: string[] = useSelector((state: RootState) => state.usersReducer);
   const socket: SocketIOClient.Socket = useSelector(
     (state: RootState) => state.socketReducer,
   );
 
-  const initializeSocketListeners = (socket: SocketIOClient.Socket) => {
-    if (socket) {
-      dispatch(fetchUsers());
-      socket.on('new_message', (data: any) => {
-        dispatch(newMessage(data.nickname, data.message));
-      });
-      socket.on('user_join', (nickname: string) => {
-        dispatch(userJoin(nickname));
-        dispatch(fetchUsers());
-      });
-      socket.on('server_shutdown', () => {
-        dispatch(setError('Server shutting down!'));
-        util.clearLocalData(socket, dispatch);
-        history.push('/');
-      });
-      socket.on('inactivity_disconnect', () => {
-        dispatch(setError('you have been disconnected due to inactivity'));
-        util.clearLocalData(socket, dispatch);
-        history.push('/');
-      });
-      socket.on('timeout', (nickname: string) => {
-        dispatch(userTimeout(nickname));
-      });
-      socket.on('user_leave', (nickname: string) => {
-        dispatch(userLeave(nickname));
-        dispatch(fetchUsers());
-      });
-      socket.on('disconnect', () => {
-        history.push('/');
-      });
-    } else {
-      history.push('/');
-    }
-  };
-
   useEffect(() => {
-    initializeSocketListeners(socket);
+    util.initializeSocketListeners(socket, dispatch, history);
     return () => {
       if (socket) {
         socket.disconnect();
@@ -74,35 +24,14 @@ const ChatPage: React.FC = () => {
     };
   }, [socket]);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (messageInput) {
-      socket.emit('new_message', { id: socket.id, message: messageInput });
-    }
-    setMessageInput('');
-  };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setMessageInput(e.target.value);
-  };
-
   return (
-    <Segment className="chat">
-      <OnlineUsers users={users} />
-      <div className="chatWrapper">
-        <ChatBox />
-        <Form onSubmit={handleSubmit} className="chatInput">
-          <Input
-            autoFocus
-            type="text"
-            value={messageInput}
-            onChange={handleChange}
-            className="textField"
-          />
-          <input type="submit" value="Send" />
-        </Form>
+    <div className="chat-wrapper">
+      <div>
+        <Messages />
+        <ChatInput socket={socket} />
+        <OnlineUsers />
       </div>
-    </Segment>
+    </div>
   );
 };
 

@@ -1,13 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-const SingleMessage = ({ message, sender }: { message: any; sender: any }) => {
-  console.log(sender);
-  return (
-    <p className={`message ${sender}`}>
-      {sender === 'me'
-        ? message
-        : sender + '\n' +  message}
-    </p>
+const SingleMessage = ({
+  message,
+  user,
+  fromSelf,
+}: {
+  message: string;
+  user: string;
+  fromSelf: boolean;
+}) => {
+  return fromSelf ? (
+    <div className="me"> {message}</div>
+  ) : (
+    <div className="">
+      {user}
+      <div className="other">{message}</div>
+    </div>
   );
 };
 

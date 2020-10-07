@@ -1,20 +1,17 @@
-
-body{
-  background-image: url("https://i.imgur.com/xciD3Gm.jpg");
-
-  background-size: cover;
-}
-html{
-  background-color: rgba(216, 7, 7, 0.432);
-  background-blend-mode: multiply;
-z-index: 2;
+body {
+  background-color: rgb(0, 255, 191);
+  background-image: radial-gradient(
+    circle at bottom right,
+    rgb(0, 75, 126),
+    #000000 50%
+  );
 }
 
-#welcome{
+.welcome {
   color: rgb(233, 233, 233);
-
+  animation: mymove 0.1s ease-out forwards;
 }
-#alert-banner {
+.alert-banner {
   margin-left: 150px;
   margin-right: 150px;
   margin-top: 550px;
@@ -23,8 +20,9 @@ z-index: 2;
 
   left: 0;
   right: 0;
+  animation: mymove 0.5s ease-out forwards;
 }
-#login-wrapper {
+.login-wrapper {
   margin: auto;
   width: 50%;
   padding: 10px;
@@ -32,9 +30,13 @@ z-index: 2;
   position: absolute;
   margin-top: 50px;
   text-align: center;
-  background: rgb(0,57,64);
-  background: linear-gradient(90deg, rgba(0,57,64,1) 0%, rgba(0,115,148,0.9738095067128414) 68%, rgba(0,160,168,0.9345938204383316) 100%);
-  transition:box-shadow .7s;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 57, 64, 1) 0%,
+    rgba(0, 115, 148, 0.9738095067128414) 68%,
+    rgba(0, 160, 168, 0.9345938204383316) 100%
+  );
+  transition: box-shadow 0.7s;
   height: 60vh;
   min-height: 300px;
   padding-top: 15vh;
@@ -47,17 +49,22 @@ z-index: 2;
   left: 0;
   right: 0;
 
-  animation:mymove .8s ease-out forwards;
+  animation: mymove 0.8s ease-out forwards;
 }
-@keyframes mymove
-{ from {top:0px; opacity: 0;}
-to {top:50px; opacity: 1}
+@keyframes mymove {
+  from {
+    top: -10px;
+    opacity: 0;
+  }
+  to {
+    top: 0px;
+    opacity: 1;
+  }
 }
-#login-wrapper:hover {
+.login-wrapper:hover {
   box-shadow: 0 5px 5px 0 rgba(22, 32, 37, 0.815);
-
 }
-#login-form {
+.login-form {
   margin-top: 70px;
   margin-left: 50px;
   margin-right: 50px;
@@ -65,27 +72,102 @@ to {top:50px; opacity: 1}
   min-width: 30px;
 }
 
-
-#login-button {
+.login-button {
   width: fit-content;
 
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   color: rgb(27, 27, 27);
   background-color: rgba(96, 140, 177, 0.692);
 
   margin-top: 20px;
 }
-#login-button:hover{
+.login-button:hover {
   background-color: rgba(108, 171, 223, 0.507);
   color: rgb(0, 0, 0);
 }
-#nickname-field{
-
+.nickname-field {
   min-width: 150px;
+}
+
+.chat-wrapper {
+  margin: auto;
+  width: 50%;
+  max-width: 80vw;
+  position: absolute;
+  margin-top: 50px;
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 57, 64, 1) 0%,
+    rgba(0, 115, 148, 0.9738095067128414) 68%,
+    rgba(0, 160, 168, 0.9345938204383316) 100%
+  );
+  transition: box-shadow 0.7s;
+  height: 70vh;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+.messages {
+  overflow-y: scroll;
+  height: 50vh;
+  max-width: 80vw;
+  width: 40vw;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+.me, .other{
+  border-radius: 15px;
+  padding: 5px;
+  margin-top: 10px;
+}
+.me{
+  align-self: flex-end;
+  background-color: aliceblue;
+
+}
+.other{
+  align-self: flex-start;
+  background-color: rgb(106, 185, 255);
+
+}
+.chat-input{
+  display: flex;
+  padding: 20px;
+  padding-top: 30px;
+}
+
+.active-users{
+width: fit-content;
+max-width: 300px;
+padding: 20px;
+overflow-y: hidden;
+position: absolute;
+right: -25vw;
+margin-right:20px ;
 
 }
 
-#chat{
-  animation:mymove .8s ease-out forwards;
+.active-users-header{
+  padding: 5px;
+  background-color: blue;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
 
+.users{
+  display: flex;
+flex-direction: column;
+align-items: flex-start;
+margin-left: 20px;
+margin-right: 20px;
 }

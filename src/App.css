@@ -3,7 +3,6 @@ body{
   background-image: url("https://i.imgur.com/xciD3Gm.jpg");
 
   background-size: cover;
-
 }
 html{
   background-color: rgba(216, 7, 7, 0.432);
@@ -33,7 +32,8 @@ z-index: 2;
   position: absolute;
   margin-top: 50px;
   text-align: center;
-  background-color: rgba(48, 78, 124, 0.925);
+  background: rgb(0,57,64);
+  background: linear-gradient(90deg, rgba(0,57,64,1) 0%, rgba(0,115,148,0.9738095067128414) 68%, rgba(0,160,168,0.9345938204383316) 100%);
   transition:box-shadow .7s;
   height: 60vh;
   min-height: 300px;
@@ -58,7 +58,7 @@ to {top:50px; opacity: 1}
 
 }
 #login-form {
-  margin-top: 80px;
+  margin-top: 70px;
   margin-left: 50px;
   margin-right: 50px;
   max-width: 300px;
@@ -70,7 +70,9 @@ to {top:50px; opacity: 1}
   width: fit-content;
 
   transition: all .3s ease-in-out;
-  color: rgb(0, 0, 0);
+  color: rgb(27, 27, 27);
+  background-color: rgba(96, 140, 177, 0.692);
+
   margin-top: 20px;
 }
 #login-button:hover{

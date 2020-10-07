@@ -1,19 +1,20 @@
 import React from 'react';
-import 'semantic-ui-css/semantic.min.css'
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import './App.css';
-
+import {Layout} from 'antd';
 import LandingPage from './pages/LandingPage';
 import ChatPage from './pages/ChatPage';
 import NotFound from './pages/NotFound';
 import AlertBanner from './components/AlertBanner';
-import Test from './pages/Test';
+import 'antd/dist/antd.css';
+
+const { Header, Content, Footer } = Layout;
 
 const App = () => (
   <div className="App">
-    <AlertBanner />
+    <Content className="site-layout" >
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
@@ -22,16 +23,17 @@ const App = () => (
         <Route exact path="/chat">
           <ChatPage />
         </Route>
-        <Route path="/test">
-          <Test />
-        </Route>
 
         <Route path="*">
           <NotFound />
         </Route>
       </Switch>
     </BrowserRouter>
+    <AlertBanner />
+
+    </Content>
   </div>
+
 );
 
 export default App;

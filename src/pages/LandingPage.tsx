@@ -1,8 +1,7 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Checkbox, Container, Form, Input, Segment } from 'semantic-ui-react'
-
+import { Button, Form, Input } from 'antd';
 import { useHistory } from 'react-router-dom';
 
 import { setSocket, setError, setNickname } from '../state/actions';
@@ -58,9 +57,9 @@ const LandingPage: React.FC = () => {
   };
 
   return (
-    <Segment id="login-wrapper" raised>
-      <h2>Welcome to Ubuiquiti chat!</h2>
-      <Form onSubmit={handleSubmit} id="login-form">
+    <div id="login-wrapper" >
+      <h2 id="welcome">Welcome to Ubuiquiti chat!</h2>
+      <form onSubmit={handleSubmit} id="login-form">
         <Input
         autoFocus
           id="nickname-field"
@@ -70,9 +69,9 @@ const LandingPage: React.FC = () => {
           onChange={handleChange}
         />
 
-        <Button type="submit" id="login-button">Join chat</Button>
-      </Form>
-    </Segment>
+        <Button type="ghost" htmlType="submit" id="login-button">Join chat</Button>
+      </form>
+    </div>
   );
 };
 

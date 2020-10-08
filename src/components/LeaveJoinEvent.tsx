@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LeaveOrJoinEvent = ({
+const LeaveJoinEvent = ({
   eventType,
   user,
 }: {
@@ -21,4 +21,4 @@ const LeaveOrJoinEvent = ({
   }
 };
 
-export default LeaveOrJoinEvent;
+export default LeaveJoinEvent;

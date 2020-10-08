@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import SingleMessage from './SingleMessage';
-import LeaveOrJoinEvent from './LeaveOrJoinEvent';
+import LeaveJoinEvent from './LeaveJoinEvent';
 
 const scrollToBottom = () => {
   const bottom = document.querySelector('.bottom');
@@ -28,7 +28,7 @@ const Messages = () => {
         return eventType === 'new_message' ? (
           <SingleMessage user={from} message={message} fromSelf={fromSelf} />
         ) : (
-          <LeaveOrJoinEvent eventType={eventType} user={from} />
+          <LeaveJoinEvent eventType={eventType} user={from} />
         );
       })}
       <div className="bottom" />

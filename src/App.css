@@ -116,6 +116,7 @@ body {
 .me {
   align-self: flex-end;
   background-color: aliceblue;
+  color: #000000;
 }
 .others {
   display: flex;
@@ -131,6 +132,8 @@ body {
   flex-direction: column;
   align-self: flex-start;
   background-color: rgb(106, 185, 255);
+  color: #000000;
+
 }
 .chat-input {
   display: flex;

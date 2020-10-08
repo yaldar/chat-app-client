@@ -12,18 +12,11 @@ const SingleMessage = ({
   time: string;
 }) => (
   fromSelf ? (
-    <div className="me message">
-      <div className="tooltiptext me">{time}</div>
-      {message}
-    </div>
+    <div className="me" title={`sent at: ${time}`}>{message}</div>
   ) : (
-    <div className="others">
+    <div className="other-wrapper">
       {user}
-      :
-      <div className="other message">
-        <div className="tooltiptext other">{time}</div>
-        {message}
-      </div>
+      <div className="other" title={`sent at: ${time}`}>{message}</div>
     </div>
   )
 );

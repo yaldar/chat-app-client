@@ -13,7 +13,6 @@ const LeaveJoinEvent = ({
     case 'user_leave':
       return (
         <i className="leave message tooltip">
-          <div className="tooltiptext">{time}</div>
 
           {`${user} has left the chat`}
         </i>
@@ -21,7 +20,6 @@ const LeaveJoinEvent = ({
     case 'user_join':
       return (
         <i className="join message tooltip">
-          <div className="tooltiptext">{time}</div>
 
           {`${user} has joined the chat`}
         </i>
@@ -29,7 +27,6 @@ const LeaveJoinEvent = ({
     case 'timeout':
       return (
         <i className="join message tooltip">
-          <div className="tooltiptext">{time}</div>
 
           {`${user} was disconnected due to inactivity`}
         </i>

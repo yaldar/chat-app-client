@@ -120,20 +120,14 @@ body {
   background-color: aliceblue;
   color: #000000;
 }
-.others {
+.other-wrapper {
   display: flex;
   flex-direction: column;
-  align-self: flex-start;
+  align-items: flex-start;
+
 }
-.message {
-  display: flex;
-  flex-direction: column;
-  margin-top: 5px;
-}
+
 .other {
-  display: flex;
-  flex-direction: column;
-  align-self: flex-start;
   background-color: rgb(106, 185, 255);
   color: #000000;
 }
@@ -227,24 +221,11 @@ body {
     width: auto;
     padding: 0px;
   }
+  .login-wrapper{
+    height: 80%;
+  }
 }
 
-
-.tooltiptext {
-  visibility: hidden;
-  width: 80px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  z-index: 1;
-  position: absolute;
-  margin-top: 25px;
-}
-
-.me:hover .tooltiptext {
-  visibility: visible;
-}
-.other:hover .tooltiptext {
-  visibility: visible;
+.time{
+  align-self: flex-start;
 }

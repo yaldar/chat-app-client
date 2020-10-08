@@ -51,6 +51,7 @@ const LandingPage = () => {
       <h2 className="welcome">Welcome to Ubiquiti chat!</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <Input
+          autoFocus
           className="nickname-field"
           type="text"
           value={nicknameInput}

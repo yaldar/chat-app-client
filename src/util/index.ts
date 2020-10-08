@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable max-len */
 import { Dispatch } from 'react';
-import process from 'process';
 import {
   clearChat,
   clearNickname,
@@ -14,7 +13,7 @@ import {
   userTimeout,
 } from '../store/actions';
 
-const addUser = async (nickname: string) => {
+const addUser = async (nickname: string, serverUrl: string) => {
   const obj: {
     error: Error | undefined;
     alreadyExists: boolean | undefined;
@@ -24,7 +23,7 @@ const addUser = async (nickname: string) => {
   };
 
   try {
-    const data = await fetch(`${getServerUrl()}${nickname}`);
+    const data = await fetch(`${serverUrl}${nickname}`);
     if (data.status === 200) {
       obj.error = undefined;
       obj.alreadyExists = false;
@@ -48,15 +47,15 @@ const clearLocalData = (socket: SocketIOClient.Socket, dispatch: Dispatch<any>) 
   }
 };
 
-const initializeSocketListeners = (socket: SocketIOClient.Socket, dispatch: Dispatch<any>, history: any) => {
+const initializeSocketListeners = (socket: SocketIOClient.Socket, dispatch: Dispatch<any>, history: any, serverUrl: string) => {
   if (socket) {
-    dispatch(fetchUsers());
+    dispatch(fetchUsers(serverUrl));
     socket.on('new_message', (data: any) => {
       dispatch(newMessage(data.nickname, data.message));
     });
     socket.on('user_join', (nickname: string) => {
       dispatch(userJoin(nickname));
-      dispatch(fetchUsers());
+      dispatch(fetchUsers(serverUrl));
     });
     socket.on('server_shutdown', () => {
       dispatch(setError('Server shutting down!'));
@@ -73,7 +72,7 @@ const initializeSocketListeners = (socket: SocketIOClient.Socket, dispatch: Disp
     });
     socket.on('user_leave', (nickname: string) => {
       dispatch(userLeave(nickname));
-      dispatch(fetchUsers());
+      dispatch(fetchUsers(serverUrl));
     });
     socket.on('disconnect', () => {
       history.push('/');
@@ -81,13 +80,6 @@ const initializeSocketListeners = (socket: SocketIOClient.Socket, dispatch: Disp
   } else {
     history.push('/');
   }
-};
-
-const getServerUrl = () => {
-  if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-    return 'http://localhost:8080/';
-  }
-  return 'https://agile-garden-69002.herokuapp.com/';
 };
 
 const invalidNickname = (nickname: string) => {
@@ -100,5 +92,4 @@ export default {
   clearLocalData,
   invalidNickname,
   initializeSocketListeners,
-  getServerUrl,
 };

@@ -6,21 +6,18 @@ import { Button, Input } from 'antd';
 import { setSocket, setError, setNickname } from '../store/actions';
 import util from '../util';
 
-const g = () => '_self' in React.createElement('div');
-
+const isInDev = () => '_self' in React.createElement('div');
+const getUrl = () => (isInDev() ? 'http://localhost:8080/' : 'https://agile-garden-69002.herokuapp.com/');
 const LandingPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(g());
-  }, []);
   const [nicknameInput, setNicknameInput] = useState('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { alreadyExists, error } = await util.addUser(nicknameInput);
+    const { alreadyExists, error } = await util.addUser(nicknameInput, getUrl());
     if (error) {
       dispatch(
         setError(`Problem contacting server. Error message: ${error.message}`),
@@ -33,8 +30,7 @@ const LandingPage = () => {
       dispatch(setError('Nickname cannot be empty!'));
     } else {
       try {
-        const newSocket = io(util.getServerUrl());
-        console.log(util.getServerUrl());
+        const newSocket = io(getUrl());
 
         newSocket.emit('user_join', nicknameInput);
         dispatch(setSocket(newSocket));

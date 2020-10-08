@@ -7,6 +7,9 @@ import OnlineUsers from '../components/OnlineUsers';
 import util from '../util';
 import ChatInput from '../components/ChatInput';
 
+const isInDev = () => '_self' in React.createElement('div');
+const getUrl = () => (isInDev() ? 'http://localhost:8080/' : 'https://agile-garden-69002.herokuapp.com/');
+
 const ChatPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -15,7 +18,7 @@ const ChatPage = () => {
   );
 
   useEffect(() => {
-    util.initializeSocketListeners(socket, dispatch, history);
+    util.initializeSocketListeners(socket, dispatch, history, getUrl());
     return () => {
       if (socket) {
         socket.disconnect();

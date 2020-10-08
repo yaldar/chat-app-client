@@ -37,9 +37,9 @@ const getUsers = (users: string[]) => ({
   payload: users,
 });
 // eslint-disable-next-line consistent-return
-export const fetchUsers = (): ThunkType => async (dispatch) => {
+export const fetchUsers = (serverUrl: string): ThunkType => async (dispatch) => {
   try {
-    const res = await fetch(`${util.getServerUrl()}api/users/`);
+    const res = await fetch(`${serverUrl}api/users/`);
     const statusCode = res.status;
     if (statusCode === 200) {
       const usersArray = await res.json();

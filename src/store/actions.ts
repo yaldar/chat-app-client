@@ -46,7 +46,7 @@ export const fetchUsers = (): ThunkType => async (dispatch) => {
 
       return dispatch(getUsers(usersArray));
     }
-    dispatch(setError('jhkkjhlkjhlk'));
+    dispatch(setError(res.statusText));
   } catch (e) {
     dispatch(setError(e.message));
   }

@@ -30,6 +30,8 @@ const LandingPage = () => {
     } else {
       try {
         const newSocket = io(util.getServerUrl());
+        console.log(util.getServerUrl());
+
         newSocket.emit('user_join', nicknameInput);
         dispatch(setSocket(newSocket));
         dispatch(setNickname(nicknameInput));

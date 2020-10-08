@@ -83,8 +83,12 @@ const initializeSocketListeners = (socket: SocketIOClient.Socket, dispatch: Disp
   }
 };
 
-const development: boolean = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
-const getServerUrl = () => (development ? 'http://localhost:8080/' : 'https://agile-garden-69002.herokuapp.com/');
+const getServerUrl = () => {
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    return 'http://localhost:8080/';
+  }
+  return 'https://agile-garden-69002.herokuapp.com/';
+};
 
 const invalidNickname = (nickname: string) => {
   const valid = /^[0-9a-zA-Z ]*$/.test(nickname);

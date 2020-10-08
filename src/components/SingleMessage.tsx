@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 
 const SingleMessage = ({
   message,
@@ -10,15 +11,27 @@ const SingleMessage = ({
   user: string;
   fromSelf: boolean;
   time: string;
-}) => (
-  fromSelf ? (
-    <div className="me" title={`sent at: ${time}`}>{message}</div>
-  ) : (
-    <div className="other-wrapper">
-      {user}
-      <div className="other" title={`sent at: ${time}`}>{message}</div>
+}) => (fromSelf ? (
+  <>
+    <div data-tip data-for="me" className="me">
+      {message}
     </div>
-  )
-);
+    <ReactTooltip id="me" effect="solid">
+      <span>{`sent at: ${time}`}</span>
+    </ReactTooltip>
+  </>
+) : (
+  <div className="other-wrapper">
+    {user}
+
+    <div data-tip data-for="other" className="other">
+      {message}
+    </div>
+    <ReactTooltip id="other" type="warning" effect="solid">
+      <span>{`sent at: ${time}`}</span>
+    </ReactTooltip>
+
+  </div>
+));
 
 export default SingleMessage;

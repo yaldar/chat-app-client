@@ -239,7 +239,7 @@ body {
   border-radius: 6px;
   z-index: 1;
   position: absolute;
-  margin-top: 15px;
+  margin-top: 25px;
 }
 
 .me:hover .tooltiptext {

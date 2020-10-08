@@ -6,11 +6,15 @@ import { Button, Input } from 'antd';
 import { setSocket, setError, setNickname } from '../store/actions';
 import util from '../util';
 
+const g = () => '_self' in React.createElement('div');
+
 const LandingPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(g());
+  }, []);
   const [nicknameInput, setNicknameInput] = useState('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {

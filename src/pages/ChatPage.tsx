@@ -8,7 +8,9 @@ import util from '../util';
 import ChatInput from '../components/ChatInput';
 
 const isInDev = () => '_self' in React.createElement('div');
-const getUrl = () => (isInDev() ? 'http://localhost:8080/' : 'https://calm-beyond-82729.herokuapp.com/');
+const getUrl = () => (isInDev()
+  ? 'http://localhost:8080/'
+  : 'https://calm-beyond-82729.herokuapp.com/');
 
 const ChatPage = () => {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ const ChatPage = () => {
   );
 
   useEffect(() => {
+    if (!socket) history.push('/');
     util.initializeSocketListeners(socket, dispatch, history, getUrl());
     return () => {
       if (socket) {

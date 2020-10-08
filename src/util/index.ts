@@ -95,9 +95,16 @@ const invalidNickname = (nickname: string) => {
   return !valid;
 };
 
+const getTime = () => {
+  const today = new Date();
+  const date = `${today.getHours()}-${today.getMinutes()}-${today.getSeconds()}`;
+  return date;
+};
+
 export default {
   addUser,
   clearLocalData,
   invalidNickname,
   initializeSocketListeners,
+  getTime,
 };

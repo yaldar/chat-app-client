@@ -71,16 +71,19 @@ body {
   min-width: 30px;
 }
 
-.login-button {
+.login-button, .chat-button {
   width: fit-content;
 
   transition: all 0.3s ease-in-out;
   color: rgb(27, 27, 27);
   background-color: rgba(96, 140, 177, 0.692);
-
-  margin-top: 20px;
 }
-.login-button:hover {
+
+.login-button{
+  margin-top: 20px;
+
+}
+.login-button:hover, .chat-button:hover {
   background-color: rgba(108, 171, 223, 0.507);
   color: rgb(0, 0, 0);
 }
@@ -163,7 +166,6 @@ body {
   background: rgba(30, 130, 158, 0.747);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  padding: 5px;
   padding: 10px;
   margin-left: 5px;
   overflow-y: hidden;
@@ -225,4 +227,24 @@ body {
     width: auto;
     padding: 0px;
   }
+}
+
+
+.tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  z-index: 1;
+  position: absolute;
+  margin-top: 15px;
+}
+
+.me:hover .tooltiptext {
+  visibility: visible;
+}
+.other:hover .tooltiptext {
+  visibility: visible;
 }

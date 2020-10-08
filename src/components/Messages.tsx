@@ -22,13 +22,20 @@ const Messages = () => {
   return (
     <div className="messages">
       {chat.map((el) => {
-        const { eventType, from, message } = el;
+        const {
+          eventType, from, message, timeStamp,
+        } = el;
         const fromSelf = nickname === from;
 
         return eventType === 'new_message' ? (
-          <SingleMessage user={from} message={message} fromSelf={fromSelf} />
+          <SingleMessage
+            user={from}
+            message={message}
+            fromSelf={fromSelf}
+            time={timeStamp}
+          />
         ) : (
-          <LeaveJoinEvent eventType={eventType} user={from} />
+          <LeaveJoinEvent eventType={eventType} user={from} time={timeStamp} />
         );
       })}
       <div className="bottom" />

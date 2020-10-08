@@ -21,7 +21,7 @@ const ChatInput = ({ socket }: { socket: SocketIOClient.Socket }) => {
         onChange={(e) => setMessageInput(e.target.value)}
         className="textField"
       />
-      <Button type="ghost" htmlType="submit">
+      <Button type="ghost" htmlType="submit" className="chat-button">
         Send
       </Button>
     </form>

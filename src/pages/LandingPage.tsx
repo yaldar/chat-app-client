@@ -29,7 +29,7 @@ const LandingPage = () => {
       dispatch(setError('Nickname cannot be empty!'));
     } else {
       try {
-        const newSocket = io('http://localhost:8080');
+        const newSocket = io('https://agile-garden-69002.herokuapp.com/');
         newSocket.emit('user_join', nicknameInput);
         dispatch(setSocket(newSocket));
         dispatch(setNickname(nicknameInput));

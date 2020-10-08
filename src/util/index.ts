@@ -23,7 +23,7 @@ const addUser = async (nickname: string) => {
   };
 
   try {
-    const data = await fetch(`http://localhost:8080/api/users/${nickname}`);
+    const data = await fetch(`https://agile-garden-69002.herokuapp.com/api/users/${nickname}`);
     if (data.status === 200) {
       obj.error = undefined;
       obj.alreadyExists = false;

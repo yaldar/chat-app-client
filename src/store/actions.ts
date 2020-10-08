@@ -37,7 +37,7 @@ const getUsers = (users: string[]) => ({
 });
 export const fetchUsers = (): ThunkType => async (dispatch) => {
   try {
-    const res = await fetch('http://localhost:8080/api/users');
+    const res = await fetch('https://agile-garden-69002.herokuapp.com/api/users');
     const statusCode = res.status;
     if (statusCode === 200) {
       const usersArray = await res.json();

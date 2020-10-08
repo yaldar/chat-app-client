@@ -7,7 +7,7 @@ import { setSocket, setError, setNickname } from '../store/actions';
 import util from '../util';
 
 const isInDev = () => '_self' in React.createElement('div');
-const getUrl = () => (isInDev() ? 'http://localhost:8080/' : 'http://powerful-reef-20481.herokuapp.com/');
+const getUrl = () => (isInDev() ? 'http://localhost:8080/' : 'https://powerful-reef-20481.herokuapp.com/');
 const LandingPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();

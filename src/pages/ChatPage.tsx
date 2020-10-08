@@ -8,7 +8,7 @@ import util from '../util';
 import ChatInput from '../components/ChatInput';
 
 const isInDev = () => '_self' in React.createElement('div');
-const getUrl = () => (isInDev() ? 'http://localhost:8080/' : 'http://powerful-reef-20481.herokuapp.com/');
+const getUrl = () => (isInDev() ? 'http://localhost:8080/' : 'https://powerful-reef-20481.herokuapp.com/');
 
 const ChatPage = () => {
   const dispatch = useDispatch();

@@ -37,7 +37,10 @@ const addUser = async (nickname: string, serverUrl: string) => {
   return obj;
 };
 
-const clearLocalData = (socket: SocketIOClient.Socket, dispatch: Dispatch<any>) => {
+const clearLocalData = (
+  socket: SocketIOClient.Socket,
+  dispatch: Dispatch<any>,
+) => {
   dispatch(clearChat());
   dispatch(clearNickname());
   dispatch(clearUsers());
@@ -47,7 +50,12 @@ const clearLocalData = (socket: SocketIOClient.Socket, dispatch: Dispatch<any>) 
   }
 };
 
-const initializeSocketListeners = (socket: SocketIOClient.Socket, dispatch: Dispatch<any>, history: any, serverUrl: string) => {
+const initializeSocketListeners = (
+  socket: SocketIOClient.Socket,
+  dispatch: Dispatch<any>,
+  history: any,
+  serverUrl: string,
+) => {
   if (socket) {
     dispatch(fetchUsers(serverUrl));
     socket.on('new_message', (data: any) => {
@@ -83,7 +91,7 @@ const initializeSocketListeners = (socket: SocketIOClient.Socket, dispatch: Disp
 };
 
 const invalidNickname = (nickname: string) => {
-  const valid = /^[0-9a-zA-Z ]*$/.test(nickname);
+  const valid = nickname.length < 20 && /^[0-9a-zA-Z ]*$/.test(nickname);
   return !valid;
 };
 

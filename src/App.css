@@ -23,9 +23,9 @@ body {
 }
 .login-wrapper {
   margin: auto;
-  width: 50%;
+  width: 70%;
+  max-width: 600px;
   padding: 10px;
-  max-width: 80vw;
   position: absolute;
   margin-top: 60px;
   text-align: center;
@@ -93,11 +93,10 @@ body {
   display: flex;
   flex-direction: column;
   height: 55vh;
-  width: 40vw;
+  width: 100%;
   padding-left: 5px;
   padding-right: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
+
   border-radius: 5px;
   background: linear-gradient(
     90deg,
@@ -123,9 +122,10 @@ body {
   flex-direction: column;
   align-self: flex-start;
 }
-.message{
+.message {
   display: flex;
   flex-direction: column;
+  margin-top: 5px;
 }
 .other {
   display: flex;
@@ -133,23 +133,26 @@ body {
   align-self: flex-start;
   background-color: rgb(106, 185, 255);
   color: #000000;
-
 }
 .chat-input {
   display: flex;
   padding-top: 20px;
+  width: 80%;
+  min-width: 200px;
 }
 
 .page {
-  display: flex;
-  flex-direction: row;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
   left: 0;
   right: 0;
-  width: 50vw;
-  min-width: 400px;
-  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  text-align: center;
+  width: 70%;
+
   margin-top: 60px;
 }
 
@@ -158,15 +161,16 @@ body {
   flex-direction: column;
   align-items: flex-start;
   background: rgba(30, 130, 158, 0.747);
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 5px;
   padding: 10px;
-  padding-top: 20px;
-  margin-right: 5px;
+  margin-left: 5px;
+  overflow-y: hidden;
 }
 .chat-wrapper {
   text-align: center;
-
+  width: 70%;
   background: linear-gradient(
     90deg,
     rgba(0, 57, 64, 1) 0%,
@@ -179,18 +183,46 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding-top: 20px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
 
-}
-.chat-input {
-  width: 30vw;
-  min-width: 200px;
-}
 .user {
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 8vw;
+  max-width: 120px;
   white-space: nowrap;
+}
+
+@media screen and (max-width: 500px) {
+  .page {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+    width: 80%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    margin-top: 30px;
+  }
+  .chat-wrapper {
+    width: auto;
+    border-radius: 0px;
+  }
+  .users {
+    border-radius: 0px;
+    margin-left: 0px;
+    margin-top: 5px;
+    padding-top: 5px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  .user {
+    margin-top: 5px;
+    width: auto;
+    padding: 0px;
+  }
 }

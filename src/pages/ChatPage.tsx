@@ -29,11 +29,11 @@ const ChatPage = () => {
 
   return (
     <div className="page">
-      <OnlineUsers />
       <div className="chat-wrapper">
         <Messages />
         <ChatInput socket={socket} />
       </div>
+      <OnlineUsers />
     </div>
   );
 };

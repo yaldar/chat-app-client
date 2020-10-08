@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearError } from '../store/actions';
 import { Alert } from 'antd';
+import { clearError } from '../store/actions';
 import { RootState } from '../store/store';
 
 const AlertBanner = () => {

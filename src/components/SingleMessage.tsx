@@ -8,15 +8,23 @@ const SingleMessage = ({
   message: string;
   user: string;
   fromSelf: boolean;
-}) => {
-  return fromSelf ? (
-    <div className="me"> {message}</div>
-  ) : (
-    <div className="">
-      {user}
-      <div className="other">{message}</div>
-    </div>
-  );
-};
+}) => (
+
+  <div className="message">
+    { fromSelf ? (
+
+      <div className="me">
+        {message}
+      </div>
+    ) : (
+      <div className="others">
+        {user}
+        :
+        <div className="other">{message}</div>
+      </div>
+    )}
+  </div>
+
+);
 
 export default SingleMessage;

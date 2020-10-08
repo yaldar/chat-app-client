@@ -10,7 +10,6 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
-    "@types/socket.io-client": "^1.4.34",
     "antd": "^4.6.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -20,8 +19,6 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.0",
     "socket.io-client": "^2.3.0"
   },
   "scripts": {
@@ -50,6 +47,7 @@
   "devDependencies": {
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
+    "@types/socket.io-client": "^1.4.34",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
     "babel-eslint": "^10.1.0",

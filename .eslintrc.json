@@ -28,7 +28,7 @@
     ],
     "rules": {
       "no-use-before-define": "off",
-      "@typescript-eslint/no-use-before-define": ["error"],
+      "no-undef": "off",
       "react/jsx-filename-extension": [0],
       "import/extensions": "off"
     }

@@ -7,24 +7,23 @@ import AlertBanner from './components/AlertBanner';
 import 'antd/dist/antd.css';
 import './App.css';
 
-
 const App = () => (
   <div className="App">
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          <Route exact path="/chat">
-            <ChatPage />
-          </Route>
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <LandingPage />
+        </Route>
+        <Route exact path="/chat">
+          <ChatPage />
+        </Route>
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
+    </BrowserRouter>
 
-      <AlertBanner />
+    <AlertBanner />
   </div>
 );
 

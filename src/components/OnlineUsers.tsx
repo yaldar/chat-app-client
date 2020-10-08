@@ -1,36 +1,22 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react';
-import { Menu, Dropdown, Button } from 'antd';
 import { useSelector } from 'react-redux';
+import { Divider } from 'antd';
 import { RootState } from '../store/store';
 
 const OnlineUsers = () => {
   const users: string[] = useSelector((state: RootState) => state.usersReducer);
-  const nickname: string = useSelector(
-    (state: RootState) => state.nicknameReducer,
-  );
-  const otherUsers = users.filter((u) => u !== nickname);
-  const menu = (
-    <Menu>
-      {otherUsers.map((user, index) => (
-        <Menu.Item>
-          <div key={user} className="user">
-            🟢
-            {user}
-          </div>
-        </Menu.Item>
-      ))}
-    </Menu>
-  );
 
   return (
-    <Dropdown
-      className="active-users"
-      overlay={menu}
-      placement="topCenter"
-      trigger={['click']}
-    >
-      <Button className="active-users-header">Online users:</Button>
-    </Dropdown>
+    <div className="users">
+      <h4>Online users:</h4>
+      <Divider plain />
+      {users.map((user) => (
+        <div key={user} className="user">
+          {`🟢 ${user}`}
+        </div>
+      ))}
+    </div>
   );
 };
 

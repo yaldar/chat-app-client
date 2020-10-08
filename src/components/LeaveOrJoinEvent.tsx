@@ -1,4 +1,5 @@
 import React from 'react';
+
 const LeaveOrJoinEvent = ({
   eventType,
   user,
@@ -8,13 +9,15 @@ const LeaveOrJoinEvent = ({
 }) => {
   switch (eventType) {
     case 'user_leave':
-      return <p className="leave">{user} has left the chat</p>;
+      return <i className="leave">{`${user} has left the chat`}</i>;
     case 'user_join':
-      return <p className="join">{user} has joined the chat</p>;
+      return <i className="join">{`${user} has joined the chat`}</i>;
     case 'timeout':
-      return <p className="join">{user} was due to inactivity</p>;
+      return (
+        <i className="join">{`${user} was disconnected due to inactivity`}</i>
+      );
     default:
-      return <div></div>;
+      return <div />;
   }
 };
 

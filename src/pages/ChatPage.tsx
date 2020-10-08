@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { RootState } from '../store/store';
 import Messages from '../components/Messages';
 import OnlineUsers from '../components/OnlineUsers';
 import util from '../util';
 import ChatInput from '../components/ChatInput';
-import { useHistory } from 'react-router-dom';
 
 const ChatPage = () => {
   const dispatch = useDispatch();
@@ -25,11 +25,11 @@ const ChatPage = () => {
   }, [socket]);
 
   return (
-    <div className="chat-wrapper">
-      <div>
+    <div className="page">
+      <OnlineUsers />
+      <div className="chat-wrapper">
         <Messages />
         <ChatInput socket={socket} />
-        <OnlineUsers />
       </div>
     </div>
   );

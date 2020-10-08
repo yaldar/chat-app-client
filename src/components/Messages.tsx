@@ -6,7 +6,7 @@ import LeaveOrJoinEvent from './LeaveOrJoinEvent';
 
 const scrollToBottom = () => {
   const bottom = document.querySelector('.bottom');
-  bottom && bottom.scrollIntoView();
+  if (bottom) bottom.scrollIntoView();
 };
 
 const Messages = () => {
@@ -22,11 +22,11 @@ const Messages = () => {
   return (
     <div className="messages">
       {chat.map((el) => {
-        const {eventType, from, message } = el;
+        const { eventType, from, message } = el;
         const fromSelf = nickname === from;
 
         return eventType === 'new_message' ? (
-          <SingleMessage user={from} message={message} fromSelf={fromSelf}/>
+          <SingleMessage user={from} message={message} fromSelf={fromSelf} />
         ) : (
           <LeaveOrJoinEvent eventType={eventType} user={from} />
         );

@@ -1,3 +1,6 @@
+/* eslint-disable no-undef */
+/* eslint-disable max-len */
+import { Dispatch } from 'react';
 import {
   clearChat,
   clearNickname,
@@ -9,8 +12,6 @@ import {
   userLeave,
   userTimeout,
 } from '../store/actions';
-import { useDispatch } from 'react-redux';
-import { Dispatch } from 'react';
 
 const addUser = async (nickname: string) => {
   const obj: {
@@ -47,8 +48,6 @@ const clearLocalData = (socket: SocketIOClient.Socket, dispatch: Dispatch<any>) 
 };
 
 const initializeSocketListeners = (socket: SocketIOClient.Socket, dispatch: Dispatch<any>, history: any) => {
-
-
   if (socket) {
     dispatch(fetchUsers());
     socket.on('new_message', (data: any) => {

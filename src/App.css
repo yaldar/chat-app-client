@@ -12,14 +12,13 @@ body {
   animation: mymove 0.1s ease-out forwards;
 }
 .alert-banner {
+  position: absolute;
+  left: 0;
+  right: 0;
   margin-left: 150px;
   margin-right: 150px;
   margin-top: 550px;
   min-width: 200px;
-  position: absolute;
-
-  left: 0;
-  right: 0;
   animation: mymove 0.5s ease-out forwards;
 }
 .login-wrapper {
@@ -28,7 +27,7 @@ body {
   padding: 10px;
   max-width: 80vw;
   position: absolute;
-  margin-top: 50px;
+  margin-top: 60px;
   text-align: center;
   background: linear-gradient(
     90deg,
@@ -89,13 +88,82 @@ body {
   min-width: 150px;
 }
 
-.chat-wrapper {
-  margin: auto;
-  width: 50%;
-  max-width: 80vw;
+.messages {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  height: 55vh;
+  width: 40vw;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    rgba(161, 217, 224, 0.658) 0%,
+    rgba(84, 203, 236, 0.699) 68%,
+    rgba(41, 178, 185, 0.767) 100%
+  );
+}
+.me,
+.other {
+  border-radius: 15px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 5px;
+}
+.me {
+  align-self: flex-end;
+  background-color: aliceblue;
+}
+.others {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+.message{
+  display: flex;
+  flex-direction: column;
+}
+.other {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  background-color: rgb(106, 185, 255);
+}
+.chat-input {
+  display: flex;
+  padding-top: 20px;
+}
+
+.page {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: 50vw;
+  min-width: 400px;
   position: absolute;
-  margin-top: 50px;
+  margin-top: 60px;
+}
+
+.users {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: rgba(30, 130, 158, 0.747);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding: 10px;
+  padding-top: 20px;
+  margin-right: 5px;
+}
+.chat-wrapper {
   text-align: center;
+
   background: linear-gradient(
     90deg,
     rgba(0, 57, 64, 1) 0%,
@@ -108,66 +176,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-}
-
-.messages {
-  overflow-y: scroll;
-  height: 50vh;
-  max-width: 80vw;
-  width: 40vw;
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  padding: 5px;
-}
-.me, .other{
-  border-radius: 15px;
-  padding: 5px;
-  margin-top: 10px;
-}
-.me{
-  align-self: flex-end;
-  background-color: aliceblue;
-
-}
-.other{
-  align-self: flex-start;
-  background-color: rgb(106, 185, 255);
-
-}
-.chat-input{
-  display: flex;
-  padding: 20px;
-  padding-top: 30px;
-}
-
-.active-users{
-width: fit-content;
-max-width: 300px;
-padding: 20px;
-overflow-y: hidden;
-position: absolute;
-right: -25vw;
-margin-right:20px ;
-
-}
-
-.active-users-header{
-  padding: 5px;
-  background-color: blue;
   border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-}
+  border-bottom-right-radius: 10px;
+  padding-top: 20px;
 
-.users{
-  display: flex;
-flex-direction: column;
-align-items: flex-start;
-margin-left: 20px;
-margin-right: 20px;
+}
+.chat-input {
+  width: 30vw;
+  min-width: 200px;
+}
+.user {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 8vw;
+  white-space: nowrap;
 }

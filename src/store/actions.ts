@@ -1,5 +1,6 @@
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
+import util from '../util';
 import { RootState } from './store';
 
 type ThunkType<ReturnType = void> = ThunkAction<
@@ -35,9 +36,10 @@ const getUsers = (users: string[]) => ({
   type: 'GET_USERS',
   payload: users,
 });
+// eslint-disable-next-line consistent-return
 export const fetchUsers = (): ThunkType => async (dispatch) => {
   try {
-    const res = await fetch('https://agile-garden-69002.herokuapp.com/api/users');
+    const res = await fetch(`${util.getServerUrl()}api/users/`);
     const statusCode = res.status;
     if (statusCode === 200) {
       const usersArray = await res.json();

@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable max-len */
 import { Dispatch } from 'react';
+import process from 'process';
 import {
   clearChat,
   clearNickname,
@@ -23,7 +24,7 @@ const addUser = async (nickname: string) => {
   };
 
   try {
-    const data = await fetch(`https://agile-garden-69002.herokuapp.com/api/users/${nickname}`);
+    const data = await fetch(`${getServerUrl()}${nickname}`);
     if (data.status === 200) {
       obj.error = undefined;
       obj.alreadyExists = false;
@@ -82,6 +83,9 @@ const initializeSocketListeners = (socket: SocketIOClient.Socket, dispatch: Disp
   }
 };
 
+const development: boolean = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+const getServerUrl = () => (development ? 'http://localhost:8080/' : 'https://agile-garden-69002.herokuapp.com/');
+
 const invalidNickname = (nickname: string) => {
   const valid = /^[0-9a-zA-Z ]*$/.test(nickname);
   return !valid;
@@ -92,4 +96,5 @@ export default {
   clearLocalData,
   invalidNickname,
   initializeSocketListeners,
+  getServerUrl,
 };

@@ -15,7 +15,7 @@
   min-width: 300px;
   max-width: 50%;
   padding: 40px;
-  height: 75vh;
+  height: 75%;
   animation: fadeInText 1s;
   background-color: var(--main-color);
   border-radius: 20px;
@@ -51,11 +51,11 @@ body {
 .chat-page {
   border-radius: var(--border-radius);
   display: flex;
-  margin-top: 10vh;
+  margin-top: 90px;
   height: 78vh;
   margin-left: 15%;
   margin-right: 15%;
-  min-width: 300px;
+  min-width: 200px;
 }
 
 .chat {
@@ -128,7 +128,7 @@ body {
   overflow: hidden;
 }
 
-@media only screen and (max-width: 340px) {
+@media only screen and (max-width: 400px) {
   .users {
     display: none;
   }

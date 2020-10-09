@@ -13,9 +13,9 @@ const SingleMessage = ({
   time: string;
 }) => (fromSelf ? (
   <>
-    <p data-tip data-for="me" className="me">
+    <div data-tip={'asdasd'} data-for="me" className="me">
       {message}
-    </p>
+    </div>
     <ReactTooltip id="me" effect="solid">
       <span>{`sent at: ${time}`}</span>
     </ReactTooltip>

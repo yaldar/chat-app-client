@@ -22,12 +22,18 @@ const ChatInput = ({ socket }: { socket: SocketIOClient.Socket }) => {
         type="text"
         className="text-field"
         value={messageInput}
-
       />
 
       <IconButton
         type="submit"
-        style={{ right: 0, marginRight: 'auto', paddingRight: 'auto' }}
+        style={{
+          right: 0,
+          marginRight: 'auto',
+          paddingRight: 'auto',
+          backgroundColor: 'white',
+          opacity: 0.5,
+          marginLeft: '10px',
+        }}
       >
         <SendIcon />
       </IconButton>

@@ -1,8 +1,11 @@
-*{
+* {
   --border-radius: 10px;
+  --main-color: rgba(127, 180, 211, 0.514);
 }
 
 .login-wrapper {
+  backdrop-filter: blur(5px);
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +17,7 @@
   padding: 40px;
   height: 75vh;
   animation: fadeInText 1s;
-  background-color: rgba(163, 198, 219, 0.897);
+  background-color: var(--main-color);
   border-radius: 20px;
 }
 
@@ -31,9 +34,7 @@
 
 body {
   background: url(./images/background.png);
-
   background-size: 100% auto;
-
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -49,10 +50,9 @@ body {
 
 .chat-page {
   border-radius: var(--border-radius);
-
   display: flex;
   margin-top: 10vh;
-  height: 80vh;
+  height: 78vh;
   margin-left: 15%;
   margin-right: 15%;
   min-width: 300px;
@@ -64,7 +64,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid var(--main-color);
   border-top-right-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
 }
@@ -72,23 +72,20 @@ body {
   flex-grow: 1;
   max-width: 140px;
   width: 30%;
-
-  border: 1px solid black;
+  border: 1px solid var(--main-color);
   border-top-left-radius: var(--border-radius);
   border-bottom-left-radius: var(--border-radius);
   padding: 10px;
   margin-right: 10px;
-  background-color: rgba(255, 255, 255, 0.753);
 }
 .chat-form {
   display: flex;
   padding: 10px;
-  width: 70%;
+  width: 90%;
 }
 
 .messages {
-  background-color: rgba(255, 255, 255, 0.753);
-
+  background-color: rgba(255, 255, 255, 0.623);
   display: flex;
   flex-direction: column;
   margin-right: 5px;
@@ -97,7 +94,7 @@ body {
   overflow-y: scroll;
   width: 100%;
   height: 90%;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--main-color);
 }
 .me,
 .other {
@@ -123,7 +120,6 @@ body {
 }
 .other {
   background-color: rgb(138, 135, 136);
-  align-self: flex-start;
 }
 .user {
   padding: 5px;
@@ -138,7 +134,7 @@ body {
   }
 }
 
-.alert-banner{
+.alert-banner {
   margin-top: 10px;
   margin-right: auto;
   margin-left: auto;

@@ -2,12 +2,14 @@ import React, { FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import io from 'socket.io-client';
-import { Button, Input } from 'antd';
+import { Button, TextField } from '@material-ui/core';
 import { setSocket, setError, setNickname } from '../store/actions';
 import util from '../util';
 
 const isInDev = () => '_self' in React.createElement('div');
-const getUrl = () => (isInDev() ? 'http://localhost:8080/' : 'https://calm-beyond-82729.herokuapp.com/');
+const getUrl = () => (isInDev()
+  ? 'http://localhost:8080/'
+  : 'https://calm-beyond-82729.herokuapp.com/');
 const LandingPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -17,7 +19,10 @@ const LandingPage = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { alreadyExists, error } = await util.addUser(nicknameInput, getUrl());
+    const { alreadyExists, error } = await util.addUser(
+      nicknameInput,
+      getUrl(),
+    );
     if (error) {
       dispatch(
         setError(`Problem contacting server. Error message: ${error.message}`),
@@ -50,15 +55,24 @@ const LandingPage = () => {
     <div className="login-wrapper">
       <h2 className="welcome">Welcome to Ubiquiti chat!</h2>
       <form onSubmit={handleSubmit} className="login-form">
-        <Input
-          autoFocus
-          className="nickname-field"
-          type="text"
-          value={nicknameInput}
-          placeholder="Enter your nickname"
+        <TextField
           onChange={(e) => setNicknameInput(e.target.value)}
+          autoFocus
+          type="text"
+          id="standard-basic"
+          label="Nickname"
+          className="nickname-field"
+          value={nicknameInput}
         />
-        <Button type="ghost" htmlType="submit" className="login-button">
+
+        <Button
+          type="submit"
+          className="login-button"
+          variant="outlined"
+          color="primary"
+          disableElevation
+          style={{ borderRadius: 25, margin: '20px' }}
+        >
           Join chat
         </Button>
       </form>

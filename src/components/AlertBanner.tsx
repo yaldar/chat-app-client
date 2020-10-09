@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Alert } from 'antd';
 import { clearError } from '../store/actions';
 import { RootState } from '../store/store';
+import Alert from '@material-ui/lab/Alert';
 
 const AlertBanner = () => {
   const error: Error = useSelector((state: RootState) => state.errorReducer);
@@ -10,18 +10,17 @@ const AlertBanner = () => {
 
   useEffect(() => {
     setTimeout(() => dispatch(clearError()), 3000);
-  }, [error]);
+  }, [error, dispatch]);
 
   return (
     error && (
       <Alert
         className="alert-banner"
-        message={error.message}
-        type="warning"
-        showIcon
+        severity="error"
         onClose={() => dispatch(clearError())}
-        closable
-      />
+      >
+        {error.message}
+      </Alert>
     )
   );
 };

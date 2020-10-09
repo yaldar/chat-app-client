@@ -1,5 +1,6 @@
-import { Button, Input } from 'antd';
+import { IconButton, TextField } from '@material-ui/core';
 import React, { FormEvent, useState } from 'react';
+import SendIcon from '@material-ui/icons/Send';
 
 const ChatInput = ({ socket }: { socket: SocketIOClient.Socket }) => {
   const [messageInput, setMessageInput] = useState('');
@@ -13,17 +14,23 @@ const ChatInput = ({ socket }: { socket: SocketIOClient.Socket }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="chat-input">
-      <Input
+    <form onSubmit={handleSubmit} className="chat-form">
+      <TextField
+        fullWidth
         autoFocus
-        type="text"
-        value={messageInput}
         onChange={(e) => setMessageInput(e.target.value)}
-        className="textField"
+        type="text"
+        className="text-field"
+        value={messageInput}
+
       />
-      <Button type="ghost" htmlType="submit" className="chat-button">
-        Send
-      </Button>
+
+      <IconButton
+        type="submit"
+        style={{ right: 0, marginRight: 'auto', paddingRight: 'auto' }}
+      >
+        <SendIcon />
+      </IconButton>
     </form>
   );
 };

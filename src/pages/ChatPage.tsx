@@ -8,9 +8,10 @@ import util from '../util';
 import ChatInput from '../components/ChatInput';
 
 const isInDev = () => '_self' in React.createElement('div');
-const getUrl = () => (isInDev()
-  ? 'http://localhost:8080/'
-  : 'https://calm-beyond-82729.herokuapp.com/');
+const getUrl = () =>
+  isInDev()
+    ? 'http://localhost:8080/'
+    : 'https://calm-beyond-82729.herokuapp.com/';
 
 const ChatPage = () => {
   const dispatch = useDispatch();
@@ -28,15 +29,15 @@ const ChatPage = () => {
       }
       util.clearLocalData(socket, dispatch);
     };
-  }, [socket]);
+  }, [socket, dispatch, history]);
 
   return (
-    <div className="page">
-      <div className="chat-wrapper">
+    <div className="chat-page">
+      <OnlineUsers />
+      <div className="chat">
         <Messages />
         <ChatInput socket={socket} />
       </div>
-      <OnlineUsers />
     </div>
   );
 };

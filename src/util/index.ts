@@ -29,8 +29,12 @@ const addUser = async (nickname: string, serverUrl: string) => {
       obj.alreadyExists = false;
     } else if (data.status === 409) {
       obj.alreadyExists = true;
+    } else if (data.status === 404) {
+      obj.error = undefined;
+      obj.alreadyExists = false;
     }
   } catch (e) {
+    console.log("object");
     obj.error = e;
     obj.alreadyExists = undefined;
   }
@@ -97,7 +101,7 @@ const invalidNickname = (nickname: string) => {
 
 const getTime = () => {
   const today = new Date();
-  const date = `${today.getHours()}-${today.getMinutes()}-${today.getSeconds()}`;
+  const date = `${today.getHours()}:${today.getMinutes()}`;
   return date;
 };
 

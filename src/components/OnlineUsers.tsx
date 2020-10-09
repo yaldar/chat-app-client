@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Divider } from 'antd';
+import { Divider } from '@material-ui/core';
 import { RootState } from '../store/store';
 
 const OnlineUsers = () => {
@@ -10,7 +10,7 @@ const OnlineUsers = () => {
   return (
     <div className="users">
       <h4>Online users:</h4>
-      <Divider plain />
+      <Divider  />
       {users.map((user) => (
         <div key={user} className="user">
           {`🟢 ${user}`}

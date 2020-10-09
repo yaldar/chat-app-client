@@ -1,6 +1,5 @@
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import util from '../util';
 import { RootState } from './store';
 
 type ThunkType<ReturnType = void> = ThunkAction<

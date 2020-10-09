@@ -3,15 +3,29 @@
   --main-color: rgba(127, 180, 211, 0.514);
 }
 
+.logo-wrapper {
+  margin-top: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+.logo {
+  height: 10vh;
+  width: auto;
+}
+
 .login-wrapper {
   backdrop-filter: blur(5px);
-
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 90px;
+  margin-top: 20px;
   min-width: 300px;
   max-width: 50%;
   padding: 40px;
@@ -32,15 +46,6 @@
   }
 }
 
-body {
-  background: url(./images/background.png);
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  transition: background 1s linear;
-}
-
 .login-form {
   margin-top: 150px;
   display: flex;
@@ -51,7 +56,7 @@ body {
 .chat-page {
   border-radius: var(--border-radius);
   display: flex;
-  margin-top: 90px;
+  margin-top: 20px;
   height: 78vh;
   margin-left: 15%;
   margin-right: 15%;

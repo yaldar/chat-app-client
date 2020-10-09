@@ -4,10 +4,12 @@ import LandingPage from './pages/LandingPage';
 import ChatPage from './pages/ChatPage';
 import NotFound from './pages/NotFound';
 import AlertBanner from './components/AlertBanner';
+import Logo from './components/Logo';
 import './App.css';
 
 const App = () => (
-  <div className="App" >
+  <div className="App">
+    <Logo/>
     <BrowserRouter>
       <Switch>
         <Route exact path="/">

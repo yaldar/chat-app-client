@@ -1,5 +1,5 @@
 
-# Client-side code of the Ubuiquiti chat app. Built with React and Typescript
+## Client-side code of the Ubuiquiti chat app. Built with React and Typescript
 
 [Preview on Netlify](https://ubiquiti-chat.netlify.app)
 

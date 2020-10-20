@@ -34,7 +34,7 @@ const addUser = async (nickname: string, serverUrl: string) => {
       obj.alreadyExists = false;
     }
   } catch (e) {
-    console.log("object");
+    console.log('object');
     obj.error = e;
     obj.alreadyExists = undefined;
   }
@@ -105,10 +105,17 @@ const getTime = () => {
   return date;
 };
 
+const getServerUrl = () => {
+  return process.env.NODE_ENV === 'development'
+    ? 'http://localhost:8080/'
+    : 'https://calm-beyond-82729.herokuapp.com/';
+};
+
 export {
   addUser,
   clearLocalData,
   invalidNickname,
   initializeSocketListeners,
   getTime,
+  getServerUrl,
 };

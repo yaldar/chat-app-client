@@ -4,15 +4,13 @@ import { useHistory } from 'react-router-dom';
 import { RootState } from '../store/store';
 import Messages from '../components/Messages';
 import OnlineUsers from '../components/OnlineUsers';
-import {initializeSocketListeners, clearLocalData} from '../util';
+import {
+  initializeSocketListeners,
+  clearLocalData,
+  getServerUrl,
+} from '../util';
 import ChatInput from '../components/ChatInput';
 import { disconnect } from '../socket';
-
-const isInDev = () => '_self' in React.createElement('div');
-const getUrl = () =>
-  isInDev()
-    ? 'http://localhost:8080/'
-    : 'https://calm-beyond-82729.herokuapp.com/';
 
 const ChatPage = () => {
   const dispatch = useDispatch();
@@ -23,7 +21,7 @@ const ChatPage = () => {
 
   useEffect(() => {
     if (!socket) history.push('/');
-    initializeSocketListeners(socket, dispatch, history, getUrl());
+    initializeSocketListeners(socket, dispatch, history, getServerUrl());
     return () => {
       if (socket) {
         disconnect(socket);

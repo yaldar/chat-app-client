@@ -1,6 +1,7 @@
 import { IconButton, TextField } from '@material-ui/core';
 import React, { FormEvent, useState } from 'react';
 import SendIcon from '@material-ui/icons/Send';
+import {sendMessage} from '../socket'
 
 const ChatInput = ({ socket }: { socket: SocketIOClient.Socket }) => {
   const [messageInput, setMessageInput] = useState('');
@@ -8,7 +9,7 @@ const ChatInput = ({ socket }: { socket: SocketIOClient.Socket }) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (messageInput) {
-      socket.emit('new_message', { id: socket.id, message: messageInput });
+      sendMessage(socket, messageInput)
     }
     setMessageInput('');
   };

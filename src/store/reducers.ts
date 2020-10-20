@@ -1,4 +1,4 @@
-import util from "../util";
+import { getTime } from '../util';
 
 type SocketAction = {
   type: 'NEW_SOCKET' | 'DISCONNECT';
@@ -64,7 +64,7 @@ const chatReducer = (state = [], { type, payload }: EventAction) => {
         {
           from: payload.from,
           message: payload.message,
-          timeStamp: util.getTime(),
+          timeStamp: getTime(),
           eventType: 'new_message',
         },
       ];
@@ -73,7 +73,7 @@ const chatReducer = (state = [], { type, payload }: EventAction) => {
         ...state,
         {
           from: payload.from,
-          timeStamp: util.getTime(),
+          timeStamp: getTime(),
           eventType: 'user_join',
         },
       ];
@@ -82,7 +82,7 @@ const chatReducer = (state = [], { type, payload }: EventAction) => {
         ...state,
         {
           from: payload.from,
-          timeStamp: util.getTime(),
+          timeStamp: getTime(),
           eventType: 'user_leave',
         },
       ];
@@ -91,7 +91,7 @@ const chatReducer = (state = [], { type, payload }: EventAction) => {
         ...state,
         {
           from: payload.from,
-          timeStamp: util.getTime(),
+          timeStamp: getTime(),
           eventType: 'timeout',
         },
       ];

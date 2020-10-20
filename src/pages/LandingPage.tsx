@@ -4,12 +4,16 @@ import { useHistory } from 'react-router-dom';
 import io from 'socket.io-client';
 import { Button, TextField } from '@material-ui/core';
 import { setSocket, setError, setNickname } from '../store/actions';
-import util from '../util';
+import { invalidNickname, addUser } from '../util';
 
 const isInDev = () => '_self' in React.createElement('div');
-const getUrl = () => (isInDev()
-  ? 'http://localhost:8080/'
-  : 'https://calm-beyond-82729.herokuapp.com/');
+const getUrl = () =>
+  isInDev()
+    ? 'http://localhost:8080/'
+    : 'https://calm-beyond-82729.herokuapp.com/';
+
+const eee = process.env.NODE_ENV;
+console.log(eee);
 const LandingPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -19,15 +23,12 @@ const LandingPage = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { alreadyExists, error } = await util.addUser(
-      nicknameInput,
-      getUrl(),
-    );
+    const { alreadyExists, error } = await addUser(nicknameInput, getUrl());
     if (error) {
       dispatch(
         setError(`Problem contacting server. Error message: ${error.message}`),
       );
-    } else if (util.invalidNickname(nicknameInput)) {
+    } else if (invalidNickname(nicknameInput)) {
       dispatch(setError('invalid nickname. only letters and numbers allowed!'));
     } else if (alreadyExists) {
       dispatch(setError('Nickname alrready taken!'));

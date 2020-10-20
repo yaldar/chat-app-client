@@ -4,8 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { RootState } from '../store/store';
 import Messages from '../components/Messages';
 import OnlineUsers from '../components/OnlineUsers';
-import util from '../util';
+import {initializeSocketListeners, clearLocalData} from '../util';
 import ChatInput from '../components/ChatInput';
+import { disconnect } from '../socket';
 
 const isInDev = () => '_self' in React.createElement('div');
 const getUrl = () =>
@@ -22,12 +23,12 @@ const ChatPage = () => {
 
   useEffect(() => {
     if (!socket) history.push('/');
-    util.initializeSocketListeners(socket, dispatch, history, getUrl());
+    initializeSocketListeners(socket, dispatch, history, getUrl());
     return () => {
       if (socket) {
-        socket.disconnect();
+        disconnect(socket);
       }
-      util.clearLocalData(socket, dispatch);
+      clearLocalData(socket, dispatch);
     };
   }, [socket, dispatch, history]);
 

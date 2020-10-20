@@ -105,7 +105,7 @@ const getTime = () => {
   return date;
 };
 
-export default {
+export {
   addUser,
   clearLocalData,
   invalidNickname,

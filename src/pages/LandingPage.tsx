@@ -46,7 +46,7 @@ const LandingPage = () => {
 
   return (
     <div className="login-wrapper">
-      <h2 className="welcome">Welcome to Ubiquiti chat!</h2>
+      <h2 className="welcome">Welcome to my chat!</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <TextField
           onChange={(e) => setNicknameInput(e.target.value)}
